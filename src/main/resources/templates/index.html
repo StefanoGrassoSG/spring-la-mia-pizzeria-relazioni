@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+	<head>
+	<meta charset="ISO-8859-1">
+	<title>ciao</title>
+	 <link rel="stylesheet" href="/webjars/bootstrap/5.3.2/css/bootstrap.min.css">
+	 <link th:href="@{/css/style.css}" rel="stylesheet">
+	</head>
+	<body>	
+		<header class="d-flex">
+			<div class="p-5 border-end border-bottom">
+				<h2>
+					<a class="text-decoration-none" href="http://localhost:8080">
+						Best Pizzas
+					</a>
+				</h2>
+			</div>
+			<div class="p-5 flex-grow-1 border-bottom">
+				
+			</div>
+		</header>
+		
+		<main>
+			<h1 class="text-center mt-5">
+				Best Pizzas by Stefano
+			</h1>
+			
+			<div class="w-75 m-auto my-cont border">
+				<div class="h-50">
+					
+				</div>
+				<div class="h-25 d-flex justify-content-center align-items-center">
+					<table class="table table-striped">
+					  <thead>
+						    <tr>
+						      <th scope="col">ID</th>
+						      <th scope="col">Name</th>
+						      <th scope="col">Description</th>						
+						      <th scope="col">Price</th>
+						    </tr>
+					  </thead>
+					  <tbody>
+						    <tr th:each="pizza : ${pizza}">
+						      <th th:text="${pizza.id}" scope="row"></th>
+						      <td th:text="${pizza.name}"></td>
+						      <td th:text="${pizza.description}"></td>					   
+						      <td th:text="${pizza.price}"></td>
+						    </tr>
+					  </tbody>
+					</table>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>
