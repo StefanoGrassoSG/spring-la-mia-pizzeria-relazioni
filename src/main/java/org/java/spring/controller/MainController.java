@@ -33,6 +33,6 @@ public class MainController {
 		Pizza pizza = pizzaService.findById(id);
 		model.addAttribute("pizza", pizza);
 		
-		return "pizza";
+		return "single";
 	}
 }

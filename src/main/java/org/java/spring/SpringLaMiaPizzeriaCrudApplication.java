@@ -20,7 +20,7 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		pizzaService.save(new Pizza("Capricciosa", "molto buona e capricciosa", "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.ricettedalmondo.it%2Fpizza-capricciosa.html&psig=AOvVaw3iGUK6nqB5KFVubM88lRTT&ust=1701429182020000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCPDCpOLL64IDFQAAAAAdAAAAABAE", 7.50));
+		pizzaService.save(new Pizza("Capricciosa", "molto buona e capricciosa", "https://www.buttalapasta.it/wp-content/uploads/2017/11/pizza-capricciosa.jpg", 7.50));
 		pizzaService.save(new Pizza("Wurstel", "buonisima con i wurstel", "https://www.dolcidee.it/media/uploads/recipe/5a5bb13339fd4_tmp26914248_2055067254519979_806649253_n.jpg", 7.00));
 		pizzaService.save(new Pizza("Patatine", "fantastica questa", "https://www.dolcidee.it/media/uploads/recipe/5ede46927ca62_tmp6d9b772b4286436abd426b9e1c3769ba.jpg", 8.00));
 		pizzaService.save(new Pizza("Prosciutto cotto", "questa la facciamo con il nostro prosciuttone", "https://efru.it/efru-upload/2020/03/pizza-prosciutto-cotto.jpg", 8.50));

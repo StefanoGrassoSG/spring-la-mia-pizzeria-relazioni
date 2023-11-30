@@ -41,11 +41,13 @@
 						    </tr>
 					  </thead>
 					  <tbody>
-						    <tr th:each="pizza : ${pizza}">
-						      <th th:text="${pizza.id}" scope="row"></th>
-						      <td th:text="${pizza.name}"></td>
+						    <tr th:each="pizza : ${pizza}">							
+							  <th th:text="${pizza.id}" scope="row"></th>
+						      <td>
+								  <a class="text-decoration-none text-danger" th:href="@{'/pizzas/' + ${pizza.id}}" th:text="${pizza.name}"></a>
+							  </td>
 						      <td th:text="${pizza.description}"></td>					   
-						      <td th:text="${pizza.price}"></td>
+						      <td th:text="${pizza.price}"></td>				     
 						    </tr>
 					  </tbody>
 					</table>
