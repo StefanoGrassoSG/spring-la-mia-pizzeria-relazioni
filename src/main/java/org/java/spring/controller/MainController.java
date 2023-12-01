@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -17,11 +18,16 @@ public class MainController {
 	private PizzaService pizzaService;
 	
 	@GetMapping("/")
-	public String getPizzas(Model model) {
+	public String getPizzas(Model model,
+			@RequestParam(required = false) String search) {
 		
-		List<Pizza> pizzas = pizzaService.findAll();
-		model.addAttribute("pizza", pizzas);
+		List<Pizza> pizza = search == null  
+				? pizzaService.findAll()
+				: pizzaService.findByName(search);
 		
+			model.addAttribute("pizza", pizza);
+			model.addAttribute("search", search == null ? "" : search);
+
 		return "index";
 	}
 	
