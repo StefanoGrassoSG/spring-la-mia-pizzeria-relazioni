@@ -38,6 +38,11 @@
 				<a class="btn btn-success px-4" th:href="@{'/pizzas/create'}">Add+</a>
 			</div>
 			
+			<div th:if="${deletedPizzaId != null}">
+			    <div th:text="'Hai cancellato la pizza con id = ' + ${deletedPizzaId}" class="alert alert-success"></div>
+			</div>
+
+						
 			<div class="w-75 m-auto my-cont border">
 				<div class="h-25 d-flex justify-content-center align-items-center">
 					<table class="table table-striped">

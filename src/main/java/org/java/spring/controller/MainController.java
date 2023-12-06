@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.validation.Valid;
 
@@ -100,10 +101,13 @@ public class MainController {
 	}
 	
 	@PostMapping("/pizzas/delete/{id}")
-	public String delete(@PathVariable int id) {
+	public String delete(@PathVariable int id, RedirectAttributes redirectAttributes) {
 		
 		Pizza pizza = pizzaService.findById(id);
-		pizzaService.delete(pizza);
+		 if (pizza != null) {
+		        pizzaService.delete(pizza);
+		        redirectAttributes.addFlashAttribute("deletedPizzaId", id);
+		    }
 		return "redirect:/";
 	}
 }
