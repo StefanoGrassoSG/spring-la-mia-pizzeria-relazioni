@@ -35,7 +35,7 @@
 			</div>
 			
 			<div class="text-center mb-3">
-				<a class="btn btn-success px-4" th:href="@{'/create'}">Add+</a>
+				<a class="btn btn-success px-4" th:href="@{'/pizzas/create'}">Add+</a>
 			</div>
 			
 			<div class="w-75 m-auto my-cont border">
@@ -47,6 +47,7 @@
 						      <th scope="col">Name</th>
 						      <th scope="col">Description</th>						
 						      <th scope="col">Price</th>
+						      <th scope="col">Actions</th>
 						    </tr>
 					  </thead>
 					  <tbody>
@@ -56,7 +57,17 @@
 								  <a class="text-decoration-none text-danger" th:href="@{'/pizzas/' + ${pizza.id}}" th:text="${pizza.name}"></a>
 							  </td>
 						      <td th:text="${pizza.description}"></td>					   
-						      <td th:text="${pizza.price}"></td>				     
+						      <td th:text="${pizza.price}"></td>
+						      <td>
+								  <a class="btn btn-warning" th:href="@{'/pizzas/edit/' + ${pizza.id}}">Edit</a>
+								  <form 
+										style="display:inline-block"
+										th:action="@{'/pizzas/delete/' + ${pizza.id}}"
+										method="POST">
+									
+										<input class="btn btn-danger" type="submit" value="DELETE">	
+								  </form>
+							  </td>					     
 						    </tr>
 					  </tbody>
 					</table>

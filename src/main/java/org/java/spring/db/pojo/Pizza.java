@@ -19,7 +19,7 @@ public class Pizza {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(length = 64)
+	@Column(length = 64, nullable = false, unique = true)
 	@Length(min = 3, max = 60, message = "name must be between 3 and 60 characters")
 	@NotEmpty(message = "name can't be empty")
 	private String name;
