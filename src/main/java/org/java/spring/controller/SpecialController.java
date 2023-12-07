@@ -33,7 +33,6 @@ public class SpecialController {
 		List<Pizza> pizzas = pizzaService.findAll();
 		model.addAttribute("pizzas", pizzas);
 		model.addAttribute("specialOffer", new SpecialOffer());
-		System.out.println(pizzas);
 		return "special-form";
 		
 	}
@@ -41,17 +40,22 @@ public class SpecialController {
 	@GetMapping("/pizzas/special/edit/{id}")
 	public String update(Model model, 
 			@PathVariable int id) {
-		List<Pizza> pizzas = pizzaService.findAll();
 		SpecialOffer specialOffer = specialOfferService.findById(id);
 		model.addAttribute("specialOffer", specialOffer);
-		model.addAttribute("pizzas", pizzas);
 		
 		return "special-form";
 	}
+	
 	@PostMapping("/pizzas/special/edit/{id}")
 	public String updatePizza(Model model,
 			@Valid @ModelAttribute PizzasOffersDTO pizzasOffersDTO,
 			BindingResult bindingResult, @PathVariable int id) {
+		
+		if(bindingResult.hasErrors()) {
+		     System.out.println(bindingResult);
+			model.addAttribute("specialOffer", pizzasOffersDTO);
+			return "special-form";
+			}
 		
 		SpecialOffer spc = specialOfferService.findById(id);
 		spc.setTitle(pizzasOffersDTO.getTitle());
