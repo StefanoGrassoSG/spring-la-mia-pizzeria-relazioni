@@ -1,5 +1,7 @@
 package org.java.spring.db.pojo;
 
+import java.util.List; 
+
 import org.hibernate.validator.constraints.Length;
 
 import jakarta.persistence.Column;
@@ -7,12 +9,15 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
+@Table(name="pizza")
 public class Pizza {
 	
 	@Id
@@ -36,6 +41,9 @@ public class Pizza {
 	@Min(value = 1, message = "the price must be greater than 0")
 	@Max(value = 100, message = "the price must be lower than 100")
 	private double price;
+	
+	@OneToMany(mappedBy = "pizza")
+	private List<SpecialOffer> specialOffers;
 	
 	public Pizza() {}
 	public Pizza(String name, String description, String image, double price) {
@@ -74,12 +82,18 @@ public class Pizza {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+	public List<SpecialOffer> getSpecialOffers() {
+		return specialOffers;
+	}
+	public void setSpecialOffers(List<SpecialOffer> specialOffers) {
+		this.specialOffers = specialOffers;
+	}
 	
 	@Override
 	public String toString() {
 		
 		return "[" + getId() + "] " + getName() + " - " 
 				+ getDescription() + getImage() + " - "
-				+ getPrice();
+				+ getPrice() + getSpecialOffers();
 	}
 }

@@ -36,12 +36,12 @@
 			
 			<div class="text-center mb-3">
 				<a class="btn btn-success px-4" th:href="@{'/pizzas/create'}">Add+</a>
+				  <a class="btn btn-success" href="/pizzas/special">add special offer</a>
 			</div>
 			
 			<div th:if="${deletedPizzaId != null}">
 			    <div th:text="'Hai cancellato la pizza con id = ' + ${deletedPizzaId}" class="alert alert-success"></div>
 			</div>
-
 						
 			<div class="w-75 m-auto my-cont border">
 				<div class="h-25 d-flex justify-content-center align-items-center">
@@ -52,17 +52,40 @@
 						      <th scope="col">Name</th>
 						      <th scope="col">Description</th>						
 						      <th scope="col">Price</th>
+						      <th scope="col">Offers</th>
+						      <th scope="col">Offers actions</th>
+						      <th scope="col">Start date</th>
+						      <th scope="col">End date</th>
 						      <th scope="col">Actions</th>
 						    </tr>
 					  </thead>
 					  <tbody>
-						    <tr th:each="pizza : ${pizza}">							
+						    <tr th:each="pizza : ${pizza}">						
 							  <th th:text="${pizza.id}" scope="row"></th>
 						      <td>
 								  <a class="text-decoration-none text-danger" th:href="@{'/pizzas/' + ${pizza.id}}" th:text="${pizza.name}"></a>
 							  </td>
 						      <td th:text="${pizza.description}"></td>					   
 						      <td th:text="${pizza.price}"></td>
+						      <td>
+								 <div th:each="specialOffer : ${pizza.specialOffers}"
+									th:text="${specialOffer.title}">
+								</div>	
+							  </td>
+							   <td>
+								 <a th:each="specialOffer : ${pizza.specialOffers}"
+								 class="btn btn-warning" th:href="@{'/pizzas/special/edit/' + ${specialOffer.id}}">Edit</a>	
+							  </td>
+							   <td>
+								 <div th:each="specialOffer : ${pizza.specialOffers}"
+									th:text="${specialOffer.startDate}">
+								</div>	
+							  </td>
+							   <td>
+								 <div th:each="specialOffer : ${pizza.specialOffers}"
+									th:text="${specialOffer.endDate}">
+								</div>	
+							  </td>
 						      <td>
 								  <a class="btn btn-warning" th:href="@{'/pizzas/edit/' + ${pizza.id}}">Edit</a>
 								  <form 

@@ -1,6 +1,6 @@
 package org.java.spring.controller;
 
-import java.util.List;
+import java.util.List; 
 import org.java.spring.db.pojo.Pizza;
 import org.java.spring.db.serv.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import jakarta.validation.Valid;
 
 
 @Controller
-public class MainController {
+public class PizzaController {
 	
 	@Autowired
 	private PizzaService pizzaService;
@@ -66,6 +66,7 @@ public class MainController {
 		int savedPizza;
 		if(bindingResult.hasErrors()) {
 		     model.addAttribute("pizza", formPizza);
+		     System.out.println(formPizza);
 			return "create";
 			}
 		
