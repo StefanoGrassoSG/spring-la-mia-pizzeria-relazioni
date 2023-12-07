@@ -49,14 +49,14 @@ public class SpecialController {
 	}
 	
 	@PostMapping("/pizzas/special/edit/{id}")
-	public String updatePizza(Model model,
-			@Valid @ModelAttribute PizzasOffersDTO pizzasOffersDTO,
-			BindingResult bindingResult, @PathVariable int id) {
+	public String updatePizza(
+			@Valid @ModelAttribute SpecialOffer specialOffer,
+			BindingResult bindingResult,
+			PizzasOffersDTO pizzasOffersDTO,
+			Model model, @PathVariable int id) {
 		
 		if(bindingResult.hasErrors()) {
-		     System.out.println(bindingResult);
-			model.addAttribute("specialOffer", pizzasOffersDTO);
-			System.out.println("vediamo: " + pizzasOffersDTO);
+			model.addAttribute("specialOffer", specialOffer);
 			return "special-form";
 			}
 		
