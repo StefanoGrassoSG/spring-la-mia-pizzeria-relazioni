@@ -56,6 +56,7 @@ public class SpecialController {
 		if(bindingResult.hasErrors()) {
 		     System.out.println(bindingResult);
 			model.addAttribute("specialOffer", pizzasOffersDTO);
+			System.out.println("vediamo: " + pizzasOffersDTO);
 			return "special-form";
 			}
 		
@@ -71,8 +72,9 @@ public class SpecialController {
 	
 	@PostMapping("/pizzas/special")
 	public String storeOffers(
-			@Valid @ModelAttribute PizzasOffersDTO pizzasOffersDTO,
+			@Valid @ModelAttribute SpecialOffer specialOffer,
 			BindingResult bindingResult,
+			PizzasOffersDTO pizzasOffersDTO,
 			Model model
 		) {
 		
@@ -83,17 +85,18 @@ public class SpecialController {
 		
 		if(bindingResult.hasErrors()) {
 		     System.out.println(bindingResult);
-			model.addAttribute("specialOffer", pizzasOffersDTO);
+			model.addAttribute("specialOffer", specialOffer);
+			System.out.println("vediamo: " + specialOffer);
 			return "special-form";
 			}
 		
-		SpecialOffer specialOffer = new SpecialOffer(
+		SpecialOffer special = new SpecialOffer(
 				pizzasOffersDTO.getTitle(),
 				pizzasOffersDTO.getStartDate(),
 				pizzasOffersDTO.getEndDate(),
 				pizza);
 		
-		specialOfferService.save(specialOffer);
+		specialOfferService.save(special);
 		
 		return "redirect:/";
 	}

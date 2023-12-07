@@ -25,6 +25,10 @@ public class SpecialOffer {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	
+	@Column(length = 64, nullable = false)
+	@Length(min = 3, max = 60, message = "title must be between 3 and 60 characters")
+	@NotEmpty(message = "title can't be empty")
 	private String title;
 	
 	@DateTimeFormat(pattern = "dd/MM/yyyy")

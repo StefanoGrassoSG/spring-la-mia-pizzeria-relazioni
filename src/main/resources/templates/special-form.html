@@ -32,7 +32,7 @@
         				<form
 							method="POST"
 							th:object="${specialOffer}">
-							<div th:if="${specialOffer.pizza == null}"> 
+							<div th:if="${pizzas != null}"> 
 								<label for="pizza">Choose pizza</label>
 								<select id="pizza" name="pizza_id">
 									<option
@@ -44,19 +44,11 @@
 									</option>
 								</select>
 							</div>
-							
-							<div th:object="${pizza}" th:if="${pizza != null}">
-							    <h3 th:text="${pizza.name}"></h3>
-							</div>
-
-							
+		
 							<div>
 								<label for="title">Title</label>
 								<input id="title" type="text" name="title" th:field="*{title}">
-								<div th:if="${#fields.hasErrors('title')}" class="alert alert-danger">
-									<h3>asdasdasdasdasd</h3>
-								    <p th:each="error : ${#fields.errors('title')}" th:text="${error}"></p>
-								</div>
+								 <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Errore: ${#fields.errors('title')}</p>
 							</div>
 							<div>
 								<label for="startDate">Start date</label>
