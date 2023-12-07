@@ -41,7 +41,9 @@ public class SpecialController {
 	public String update(Model model, 
 			@PathVariable int id) {
 		SpecialOffer specialOffer = specialOfferService.findById(id);
+		Pizza pizza = pizzaService.findById(specialOffer.getPizza().getId());
 		model.addAttribute("specialOffer", specialOffer);
+		model.addAttribute("pizza", pizza);
 		
 		return "special-form";
 	}
