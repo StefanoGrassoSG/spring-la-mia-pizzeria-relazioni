@@ -112,15 +112,16 @@ public class PizzaController {
 	}
 	
 	@PostMapping("/pizzas/delete/{id}")
-	public String delete(@PathVariable int id, RedirectAttributes redirectAttributes) {
+	public String delete(@PathVariable int id) {
 		
 		Pizza pizza = pizzaService.findById(id);
 		 if (pizza != null) {
 			 pizza.clearIngredients();
+			 pizza.clearOffers();
 			 pizzaService.save(pizza);
-		        pizzaService.delete(pizza);
-		        redirectAttributes.addFlashAttribute("deletedPizzaId", id);
+		     pizzaService.delete(pizza);
 		    }
+		 
 		return "redirect:/";
 	}
 }

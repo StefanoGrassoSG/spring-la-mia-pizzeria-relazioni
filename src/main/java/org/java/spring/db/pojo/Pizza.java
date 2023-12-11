@@ -111,6 +111,14 @@ public class Pizza {
 	        ingredients.clear();
 	    }
 	}
+	public void clearOffers() {
+	    if (specialOffers != null) {
+	        for (SpecialOffer spec : specialOffers) {
+	        	 spec.setPizza(null);
+	        }
+	        specialOffers.clear();
+	    }
+	}
 	
 	@Override
 	public String toString() {
