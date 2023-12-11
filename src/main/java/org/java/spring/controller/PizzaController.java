@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.java.spring.db.pojo.Ingredient;
 import org.java.spring.db.pojo.Pizza;
+import org.java.spring.db.pojo.SpecialOffer;
 import org.java.spring.db.serv.IngredientService;
 import org.java.spring.db.serv.PizzaService;
+import org.java.spring.db.serv.SpecialOfferService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +31,10 @@ public class PizzaController {
 	
 	@Autowired
 	private IngredientService ingredientService;
+	
+	@Autowired
+	private SpecialOfferService specialOfferService;
+	
 	
 	@GetMapping("/")
 	public String getPizzas(Model model,
@@ -119,6 +125,10 @@ public class PizzaController {
 			 pizza.clearIngredients();
 			
 			 pizzaService.save(pizza);
+			 
+			List<SpecialOffer> specialOffers = pizza.getSpecialOffers();
+			specialOffers.forEach(specialOfferService::delete);
+			 
 		     pizzaService.delete(pizza);
 		    }
 		 
