@@ -48,7 +48,7 @@ public class PizzaController {
 	@GetMapping("/pizzas/{id}")
 	public String getBook(Model model,
 			@PathVariable int id) {
-		
+
 		Pizza pizza = pizzaService.findById(id);
 		model.addAttribute("pizza", pizza);
 		
