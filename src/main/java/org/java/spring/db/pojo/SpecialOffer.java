@@ -75,6 +75,12 @@ public class SpecialOffer {
 	public void setPizza(Pizza pizza) {
 		this.pizza = pizza;
 	}
+	public void removePizza() {
+	    if (pizza != null) {
+	        pizza.getSpecialOffers().remove(this);
+	        pizza = null;
+	    }
+	}
 	
 	@Override
 	public String toString() {

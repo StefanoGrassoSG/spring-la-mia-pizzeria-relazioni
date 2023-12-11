@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.validator.constraints.Length;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -44,7 +45,7 @@ public class Pizza {
 	@Max(value = 100, message = "the price must be lower than 100")
 	private double price;
 	
-	@OneToMany(mappedBy = "pizza")
+	@OneToMany(mappedBy = "pizza",  cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<SpecialOffer> specialOffers;
 	
 	@ManyToMany
@@ -111,14 +112,7 @@ public class Pizza {
 	        ingredients.clear();
 	    }
 	}
-	public void clearOffers() {
-	    if (specialOffers != null) {
-	        for (SpecialOffer spec : specialOffers) {
-	        	 spec.setPizza(null);
-	        }
-	        specialOffers.clear();
-	    }
-	}
+	
 	
 	@Override
 	public String toString() {

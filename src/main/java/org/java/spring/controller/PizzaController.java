@@ -117,7 +117,7 @@ public class PizzaController {
 		Pizza pizza = pizzaService.findById(id);
 		 if (pizza != null) {
 			 pizza.clearIngredients();
-			 pizza.clearOffers();
+			
 			 pizzaService.save(pizza);
 		     pizzaService.delete(pizza);
 		    }
