@@ -116,6 +116,8 @@ public class PizzaController {
 		
 		Pizza pizza = pizzaService.findById(id);
 		 if (pizza != null) {
+			 pizza.clearIngredients();
+			 pizzaService.save(pizza);
 		        pizzaService.delete(pizza);
 		        redirectAttributes.addFlashAttribute("deletedPizzaId", id);
 		    }

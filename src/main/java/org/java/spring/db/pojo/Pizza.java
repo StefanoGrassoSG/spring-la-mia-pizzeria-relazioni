@@ -103,6 +103,14 @@ public class Pizza {
 	public void setIngredients(Ingredient... ingredients) {	
 		setIngredients(Arrays.asList(ingredients));
 	}
+	public void clearIngredients() {
+	    if (ingredients != null) {
+	        for (Ingredient ing : ingredients) {
+	            ing.getPizzas().remove(this);
+	        }
+	        ingredients.clear();
+	    }
+	}
 	
 	@Override
 	public String toString() {
