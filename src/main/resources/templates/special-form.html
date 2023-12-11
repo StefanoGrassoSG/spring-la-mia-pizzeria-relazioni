@@ -32,18 +32,19 @@
         				<form
 							method="POST"
 							th:object="${specialOffer}">
-							<div th:if="${pizzas != null}"> 
 								<label for="pizza">Choose pizza</label>
-								<select id="pizza" name="pizza_id">
+								<select
+								th:object="${pizza}"
+								 id="pizza" name="pizza_id">
 									<option
 										th:each="a : ${pizzas}"
 										th:object="${a}"
 										th:value="*{id}"
+										th:selected="${a.id == specialOffer.pizza.id}"
 									>
 										[[*{name}]]
 									</option>
 								</select>
-							</div>
 		
 							<div>
 								<label for="title">Title</label>

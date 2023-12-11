@@ -76,6 +76,19 @@
 									</ul>
 								</div>
 							</div>
+							<div
+							th:each="ing : ${ingredients}"
+							th:object="${ing}"
+							>
+							<label
+							th:for="${'ingredient-' + ing.id}"
+							>[[*{name}]]</label>
+							<input type="checkbox"
+							th:id="${'ingredient-' + ing.id}" 
+							th:value="*{id}" 
+							th:field="${pizza.ingredients}"
+							>
+							</div>
 							<input class="mt-3 btn btn-success" type="submit" value="Save">
 						</form>
     			   </div>

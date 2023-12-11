@@ -1,7 +1,10 @@
 package org.java.spring.controller;
 
-import java.util.List; 
+import java.util.List;
+
+import org.java.spring.db.pojo.Ingredient;
 import org.java.spring.db.pojo.Pizza;
+import org.java.spring.db.serv.IngredientService;
 import org.java.spring.db.serv.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +26,9 @@ public class PizzaController {
 	
 	@Autowired
 	private PizzaService pizzaService;
+	
+	@Autowired
+	private IngredientService ingredientService;
 	
 	@GetMapping("/")
 	public String getPizzas(Model model,
@@ -52,7 +58,9 @@ public class PizzaController {
 	@GetMapping("/pizzas/create")
 	public String create(Model model)  {
 		
+		List<Ingredient> ings = ingredientService.findAll();
 		model.addAttribute("pizza", new Pizza());
+		model.addAttribute("ingredients", ings);
 		
 		return "create";
 	}
@@ -87,6 +95,8 @@ public class PizzaController {
 	public String update(Model model, 
 			@PathVariable int id) {
 		
+		List<Ingredient> ings = ingredientService.findAll();
+		model.addAttribute("ingredients", ings);
 		Pizza pizza = pizzaService.findById(id);
 		model.addAttribute("pizza", pizza);
 		
